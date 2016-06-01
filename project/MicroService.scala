@@ -13,6 +13,8 @@ trait MicroService {
 
   val appName: String
 
+  val defaultPort : Int
+
   lazy val appDependencies : Seq[ModuleID] = ???
   lazy val plugins : Seq[Plugins] = Seq(play.PlayScala)
   lazy val playSettings : Seq[Setting[_]] = Seq(routesImport ++= Seq("uk.gov.hmrc.employmentcheck.config.QueryBinders._", "org.joda.time.LocalDate"))
