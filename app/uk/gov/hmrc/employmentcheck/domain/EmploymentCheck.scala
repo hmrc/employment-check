@@ -20,7 +20,6 @@ import org.joda.time.LocalDate
 import play.api.libs.json.Json
 import uk.gov.hmrc.play.controllers.RestFormats
 
-
 case class EmploymentCheck(empref: String, nino: String, date: LocalDate, employed: Boolean)
 
 object EmploymentCheck {

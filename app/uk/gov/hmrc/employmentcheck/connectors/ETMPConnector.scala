@@ -16,21 +16,14 @@
 
 package uk.gov.hmrc.employmentcheck.connectors
 
-import play.api.Logger
 import uk.gov.hmrc.employmentcheck.config.{AppContext, WSHttp}
-import uk.gov.hmrc.play.http.{HeaderCarrier, HttpGet}
-import views.html.helper
-
-import scala.concurrent.Future
+import uk.gov.hmrc.play.http.HttpGet
 
 trait ETMPConnector {
 
   def etmpBaseUrl: String
 
   def httpGet: HttpGet
-
-
-
 }
 
 object ETMPConnector extends ETMPConnector {
