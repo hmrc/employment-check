@@ -17,8 +17,27 @@
 package uk.gov.hmrc.employmentcheck.domain
 
 import org.joda.time.LocalDate
-import play.api.libs.json.Json
+import play.api.libs.json._
 import uk.gov.hmrc.play.controllers.RestFormats
+
+trait EmploymentCheckStatus
+
+object EmploymentCheckStatus {
+  implicit val reads: Reads[EmploymentCheckStatus] = new Reads[EmploymentCheckStatus] {
+    override def reads(json: JsValue): JsResult[EmploymentCheckStatus] =
+      implicitly[Reads[String]].reads(json).map {
+        case "employed" => Employed
+        case "not_employed" => NotEmployed
+        case _ => NinoUnknown
+      }
+  }
+}
+
+case object Employed extends EmploymentCheckStatus
+
+case object NotEmployed extends EmploymentCheckStatus
+
+case object NinoUnknown extends EmploymentCheckStatus
 
 case class EmploymentCheck(empref: String, nino: String, date: LocalDate, employed: Boolean)
 

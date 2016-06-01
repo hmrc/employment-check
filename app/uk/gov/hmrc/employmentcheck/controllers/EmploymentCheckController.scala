@@ -16,21 +16,11 @@
 
 package uk.gov.hmrc.employmentcheck.controllers
 
-
 import org.joda.time.LocalDate
-import play.api.libs.json.Json
-import play.api.mvc.Action
-import uk.gov.hmrc.employmentcheck.domain.EmploymentCheck
 import uk.gov.hmrc.play.microservice.controller.BaseController
 
-import scala.concurrent.Future
-
-
 trait EmploymentCheckController extends BaseController {
-
-  def check(empref: String, nino: String, atDate: Option[LocalDate]) = Action.async { implicit request =>
-    Future.successful(Ok(Json.toJson(EmploymentCheck("test ref", "test nino", atDate.getOrElse(LocalDate.now()), employed = true))))
-  }
+  def check(empref: String, nino: String, atDate: Option[LocalDate]) = sandbox.EmploymentCheckController.check(empref, nino, atDate)
 }
 
 object EmploymentCheckController extends EmploymentCheckController
