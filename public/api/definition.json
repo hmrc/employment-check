@@ -1,0 +1,36 @@
+{
+  "scopes": [
+    {
+      "key": "read:employment-check",
+      "name": "employment check",
+      "description": "Check employment status of an individual in a payroll scheme"
+    }
+  ],
+  "api": {
+    "name": "Employment Check",
+    "description": "Employment check for employers",
+    "context": "employment-check",
+    "versions": [
+      {
+        "version": "1.0",
+        "status": "PUBLISHED",
+        "endpoints": [
+          {
+            "uriPattern": "/empref/{empref}/employee/{nino}",
+            "endpointName": "employment-check",
+            "method": "GET",
+            "authType": "NONE",
+            "throttlingTier": "UNLIMITED",
+            "scope": "read:employment-check",
+            "queryParameters": [
+              {
+                "name": "atDate",
+                "required": false
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
