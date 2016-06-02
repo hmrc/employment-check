@@ -1,3 +1,4 @@
+import play.PlayImport.PlayKeys
 import play.PlayImport.PlayKeys.routesImport
 import sbt.Keys._
 import sbt.Tests.{Group, SubProcess}
@@ -15,7 +16,7 @@ trait MicroService {
 
   val defaultPort : Int
 
-  lazy val appDependencies : Seq[ModuleID] = ???
+  def appDependencies : Seq[ModuleID]
   lazy val plugins : Seq[Plugins] = Seq(play.PlayScala)
   lazy val playSettings : Seq[Setting[_]] = Seq(routesImport ++= Seq("uk.gov.hmrc.employmentcheck.config.QueryBinders._", "org.joda.time.LocalDate"))
 
@@ -25,6 +26,7 @@ trait MicroService {
     .settings(scalaSettings: _*)
     .settings(publishingSettings: _*)
     .settings(defaultSettings(): _*)
+    .settings(PlayKeys.playDefaultPort := defaultPort)
     .settings(
       targetJvm := "jvm-1.8",
       scalaVersion := "2.11.8",

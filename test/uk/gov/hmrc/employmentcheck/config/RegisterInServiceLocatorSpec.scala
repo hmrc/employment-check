@@ -48,7 +48,6 @@ class RegisterInServiceLocatorSpec extends UnitSpec with MockitoSugar {
       verify(mockConnector).register(any())
     }
 
-
     "not register the microservice in service locator when registration is disabled" in new Setup {
       override val registrationEnabled: Boolean = false
       onStart(fakeApplicationWithGlobal)

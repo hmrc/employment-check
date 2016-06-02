@@ -33,7 +33,7 @@ trait ETMPConnector {
   def httpGet: HttpGet
 
   def check(empref: String, nino: String, atDate: LocalDate)(implicit hc: HeaderCarrier): Future[EmploymentCheckStatus] = {
-    val url = s"$etmpBaseUrl/empref/${helper.urlEncode(empref)}/employee/${helper.urlEncode(nino)}/?atDate=${DateConverter.formatToString(atDate)}"
+    val url = s"$etmpBaseUrl/apprenticeship-levy-stub/empref/${helper.urlEncode(empref)}/employee/${helper.urlEncode(nino)}?atDate=${DateConverter.formatToString(atDate)}"
 
     Logger.debug(s"Calling ETMP at $url")
 
