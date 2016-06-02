@@ -19,12 +19,29 @@ package uk.gov.hmrc.employmentcheck.config
 import com.typesafe.config.Config
 import net.ceedubs.ficus.Ficus._
 import play.api._
+import uk.gov.hmrc.employmentcheck.connectors.ServiceLocatorConnector
 import uk.gov.hmrc.play.audit.filters.AuditFilter
 import uk.gov.hmrc.play.auth.controllers.AuthParamsControllerConfig
 import uk.gov.hmrc.play.auth.microservice.filters.AuthorisationFilter
 import uk.gov.hmrc.play.config.{AppName, ControllerConfig, RunMode}
+import uk.gov.hmrc.play.http.HeaderCarrier
 import uk.gov.hmrc.play.http.logging.filters.LoggingFilter
 import uk.gov.hmrc.play.microservice.bootstrap.DefaultMicroserviceGlobal
+
+trait ServiceLocatorRegistration extends GlobalSettings with RunMode {
+
+  val registrationEnabled: Boolean
+  val slConnector: ServiceLocatorConnector
+  implicit val hc: HeaderCarrier
+
+  override def onStart(app: Application): Unit = {
+    super.onStart(app)
+    registrationEnabled match {
+      case true => slConnector.register
+      case false => Logger.warn("Registration in Service Locator is disabled")
+    }
+  }
+}
 
 object ControllerConfiguration extends ControllerConfig {
   lazy val controllerConfigs = Play.current.configuration.underlying.as[Config]("controllers")
