@@ -22,10 +22,13 @@ import play.api.libs.json.Json
 import play.api.mvc.Action
 import uk.gov.hmrc.employmentcheck.connectors.ETMPConnector
 import uk.gov.hmrc.employmentcheck.domain.{Employed, EmploymentCheck, NinoUnknown, NotEmployed}
-import uk.gov.hmrc.play.http.HeaderCarrier
 import uk.gov.hmrc.play.microservice.controller.BaseController
 
+
 trait EmploymentCheckController extends BaseController {
+
+  import uk.gov.hmrc.employmentcheck.controllers._
+
   def etmpConnector: ETMPConnector
 
   def check(empref: String, nino: String, atDate: Option[LocalDate]) = Action.async { implicit request =>
@@ -34,7 +37,7 @@ trait EmploymentCheckController extends BaseController {
     etmpConnector.check(empref, nino, checkDate).map {
       case Employed => Ok(Json.toJson(EmploymentCheck(empref, nino, checkDate, employed = true)))
       case NotEmployed => Ok(Json.toJson(EmploymentCheck(empref, nino, checkDate, employed = false)))
-      case NinoUnknown => NotFound // TODO: return correct error code EPAYE_NINO_UNKNOWN
+      case NinoUnknown => ErrorNinoNotVisible.toResult
     }
 
   }
