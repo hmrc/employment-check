@@ -19,6 +19,8 @@ package uk.gov.hmrc.employmentcheck.config
 import com.typesafe.config.Config
 import net.ceedubs.ficus.Ficus._
 import play.api._
+import uk.gov.hmrc.apprenticeshiplevy.config.AppContext
+import uk.gov.hmrc.apprenticeshiplevy.connectors.ServiceLocatorConnector
 import uk.gov.hmrc.employmentcheck.connectors.ServiceLocatorConnector
 import uk.gov.hmrc.play.audit.filters.AuditFilter
 import uk.gov.hmrc.play.auth.controllers.AuthParamsControllerConfig
@@ -71,7 +73,7 @@ object MicroserviceAuthFilter extends AuthorisationFilter {
     ControllerConfiguration.paramsForController(controllerName).needsAuth
 }
 
-object MicroserviceGlobal extends DefaultMicroserviceGlobal with RunMode {
+object MicroserviceGlobal extends DefaultMicroserviceGlobal with RunMode with ServiceLocatorRegistration {
 
   override val auditConnector = MicroserviceAuditConnector
 
@@ -83,4 +85,8 @@ object MicroserviceGlobal extends DefaultMicroserviceGlobal with RunMode {
   override val microserviceAuditFilter = MicroserviceAuditFilter
 
   override val authFilter = Some(MicroserviceAuthFilter)
+
+  override implicit val hc: HeaderCarrier = HeaderCarrier()
+  override lazy val registrationEnabled = AppContext.registrationEnabled
+  override lazy val slConnector = ServiceLocatorConnector
 }
