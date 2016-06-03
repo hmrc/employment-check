@@ -19,8 +19,6 @@ package uk.gov.hmrc.employmentcheck.config
 import com.typesafe.config.Config
 import net.ceedubs.ficus.Ficus._
 import play.api._
-import uk.gov.hmrc.apprenticeshiplevy.config.AppContext
-import uk.gov.hmrc.apprenticeshiplevy.connectors.ServiceLocatorConnector
 import uk.gov.hmrc.employmentcheck.connectors.ServiceLocatorConnector
 import uk.gov.hmrc.play.audit.filters.AuditFilter
 import uk.gov.hmrc.play.auth.controllers.AuthParamsControllerConfig
