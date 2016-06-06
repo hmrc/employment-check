@@ -25,7 +25,7 @@ import uk.gov.hmrc.employmentcheck.domain.{Employed, EmploymentCheck, NinoUnknow
 import uk.gov.hmrc.play.microservice.controller.BaseController
 
 
-trait EmploymentCheckController extends BaseController {
+trait SandboxEmploymentCheckController extends BaseController {
 
   import uk.gov.hmrc.employmentcheck.controllers._
 
@@ -43,6 +43,6 @@ trait EmploymentCheckController extends BaseController {
   }
 }
 
-object EmploymentCheckController extends EmploymentCheckController {
+object SandboxEmploymentCheckController extends SandboxEmploymentCheckController {
   override def etmpConnector: ETMPConnector = ETMPConnector
 }

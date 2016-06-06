@@ -1,0 +1,1 @@
+GET        /empref/:empref/employee/:nino               uk.gov.hmrc.employmentcheck.controllers.sandbox.SandboxEmploymentCheckController.check(empref: String, nino: String, atDate: Option[LocalDate])

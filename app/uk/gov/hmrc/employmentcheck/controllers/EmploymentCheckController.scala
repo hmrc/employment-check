@@ -20,7 +20,7 @@ import org.joda.time.LocalDate
 import uk.gov.hmrc.play.microservice.controller.BaseController
 
 trait EmploymentCheckController extends BaseController {
-  def check(empref: String, nino: String, atDate: Option[LocalDate]) = sandbox.EmploymentCheckController.check(empref, nino, atDate)
+  def check(empref: String, nino: String, atDate: Option[LocalDate]) = sandbox.SandboxEmploymentCheckController.check(empref, nino, atDate)
 }
 
 object EmploymentCheckController extends EmploymentCheckController

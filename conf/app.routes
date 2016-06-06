@@ -1,3 +1,5 @@
 # microservice specific routes
 
-GET        /empref/:empref/employee/:nino       uk.gov.hmrc.employmentcheck.controllers.EmploymentCheckController.check(empref: String, nino: String, atDate: Option[LocalDate])
+GET        /empref/:empref/employee/:nino               uk.gov.hmrc.employmentcheck.controllers.EmploymentCheckController.check(empref: String, nino: String, atDate: Option[LocalDate])
+GET        /api/definition                              controllers.Assets.at(path="/public/api", file = "definition.json")
+GET        /api/documentation/:version/:endpoint        uk.gov.hmrc.employmentcheck.controllers.DocumentationController.documentation(version, endpoint)
