@@ -16,7 +16,7 @@
         "status": "PUBLISHED",
         "endpoints": [
           {
-            "uriPattern": "/empref/{empref}/employee/{nino}",
+            "uriPattern": "/epaye/empref/{empref}/employee/{nino}",
             "endpointName": "employment-check",
             "method": "GET",
             "authType": "NONE",

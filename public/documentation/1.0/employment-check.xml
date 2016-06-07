@@ -3,7 +3,7 @@
     <description>Checks the employment status of an individual in a payroll scheme.</description>
     <section id="resource">
         <title>Resource</title>
-        <resource>GET /employment-check/empref/{empref}/employee/{nino}?atDate={date}</resource>
+        <resource>GET /epaye/employment-check/empref/{empref}/employee/{nino}?atDate={date}</resource>
     </section>
     <section id="path-parameters">
         <title>Path Parameters</title>
