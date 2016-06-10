@@ -1,1 +1,1 @@
-GET        /epaye/empref/:empref/employee/:nino        uk.gov.hmrc.employmentcheck.controllers.sandbox.SandboxEmploymentCheckController.check(empref: String, nino: String, atDate: Option[LocalDate])
+GET        /epaye/:empref/employee/:nino        uk.gov.hmrc.employmentcheck.controllers.sandbox.SandboxEmploymentCheckController.check(empref: String, nino: String, atDate: Option[LocalDate])
